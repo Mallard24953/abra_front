@@ -8,12 +8,7 @@ interface cartState {
 }
 
 const initialState:cartState = {
-  products: [{
-    id: 6,
-    name: "SEO Video Course: How to get traffic and Google rating",
-    price: 39,
-    image: "absolute.jpg"
-  }] 
+  products: [] 
 }
 
 const cartSlice = createSlice({
@@ -21,8 +16,8 @@ const cartSlice = createSlice({
   initialState: initialState,
   reducers: {
     addToCart(state, action:PayloadAction<IProduct>) {
-      state.products = [...state.products, action.payload] 
-    },
+      state.products = [...state.products, action.payload]
+    }
   },
 })
 

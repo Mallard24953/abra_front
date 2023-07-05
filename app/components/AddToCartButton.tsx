@@ -11,7 +11,6 @@ interface IAddToCartButtonProps {
 export default function AddToCartButton({ product }: IAddToCartButtonProps) {
 
   const addProduct = () => {
-    console.log(product)
     store.dispatch(addToCart(product))
   }
 

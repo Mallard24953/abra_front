@@ -1,15 +1,18 @@
 import { IProduct } from '@/types'
 import Image from 'next/image'
 import AddToCartButton from './AddToCartButton'
-import { useFormatter } from 'next-intl'
 
 
 interface IProductCardProps {
   product: IProduct
 }
 
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
+
 export default function ProductCard({ product }: IProductCardProps) {
-  const format = useFormatter()
 
   return (
     <>
@@ -26,15 +29,11 @@ export default function ProductCard({ product }: IProductCardProps) {
           />
         </div>
         <div className='my-3'>
-          <div className='text-xl font-medium text-red-800 mb-2'>
-            Price:{' '}
-             {format.number(product.price, {
-              style: 'currency',
-              currency: 'USD',
-            })} 
+          <div className='text-xl font-medium text-red-700 mb-2'>
+            Price:{' '} {formatter.format(+product.price)}
           </div>
           <div>
-            <h3 className='text-sm text-gray-700'>{product.name}</h3>
+            <h3 className='text-sm  text-slate-700'>{product.name}</h3>
           </div>
         </div>
         <div className='mt-auto'>

@@ -1,9 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
-import { NextIntlClientProvider } from 'next-intl'
-import { notFound } from 'next/navigation'
-import CartContextProvider from '@/context/CartContextProvider'
+import StoreProvider from '@/store/StoreProvider'
 
 export function generateStaticParams() {
   return [{ locale: 'en' }]
@@ -18,25 +16,18 @@ export const metadata = {
 
 export default async function RootLayout({
   children,
-  params: { locale },
 }: {
   children: React.ReactNode
-  params: any
 }) {
-  let messages
-  try {
-    messages = (await import(`../../messages/${locale}.json`)).default
-  } catch (error) {
-    notFound()
-  }
-
   return (
-    <html lang={locale}>
+    <html lang='en'>
       <body className={`${inter.className} bg-slate-100 dark:bg-slate-900`}>
-        <Navbar />
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <StoreProvider>
+          <>
+            <Navbar />
+            {children}
+          </>
+        </StoreProvider>
       </body>
     </html>
   )

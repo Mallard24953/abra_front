@@ -1,7 +1,5 @@
 'use client'
-
 import { IProduct } from '@/types'
-import { useFormatter } from 'next-intl'
 import Image from 'next/image'
 
 interface ICartItemProps {
@@ -9,8 +7,12 @@ interface ICartItemProps {
   count: number
 }
 
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
+
 export default function CartItem({ product, count }: ICartItemProps) {
-  const format = useFormatter()
   return (
     <div className='flex flex-row p-6 mx-6 gap-6'>
       <div className='w-20'>
@@ -25,7 +27,7 @@ export default function CartItem({ product, count }: ICartItemProps) {
       <div className='flex-1 text-slate-700'>{product.name}</div>
       <div className='w-20 text-slate-700'>{count}</div>
       <div className='w-20 text-end'>
-        {format.number(product.price, { style: 'currency', currency: 'USD' })}
+        { formatter.format(+product.price) }
       </div>
     </div>
   )
