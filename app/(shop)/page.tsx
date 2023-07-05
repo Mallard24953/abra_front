@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { IProduct } from '@/types'
-import PageTitle from '@/components/PageTitle'
+import PageTitle from '@/app/components/PageTitle'
 import ProductCard from './components/ProductCard'
 
 const PAGETITLE = 'Our Products '

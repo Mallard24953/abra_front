@@ -1,4 +1,4 @@
-import MyCart from '@/app/components/MyCart'
+import MyCart from "../(shop)/components/MyCart"
 
 export default function PageTitle({ title }: { title: string }) {
   return (

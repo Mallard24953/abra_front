@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
-import PageTitle from '@/components/PageTitle'
+import PageTitle from '@/app/components/PageTitle'
+import Cart from './components/Cart'
 
-const PAGETITLE = 'Login'
+const PAGETITLE = 'Cart'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -12,7 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page() {
   return (
     <main className='w-full px-6'>
-
+      <PageTitle title={PAGETITLE} />
+      <Cart />
     </main>
   )
 }
