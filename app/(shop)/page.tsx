@@ -8,7 +8,7 @@ const PAGETITLE = 'Our Products '
 async function getData() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products`,
-    { next: {revalidate: 0} }
+    { next: {revalidate: 120} }
   )
 
   if (!res.ok) {

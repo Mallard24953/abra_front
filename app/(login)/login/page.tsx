@@ -10,8 +10,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
   return (
-    <main className='w-full px-6'>
-Login
-    </main>
+    <>
+      <main className='w-full px-6'>Login</main>
+    </>
   )
 }
