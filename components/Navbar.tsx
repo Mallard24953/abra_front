@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import ShoppingCartIcon from './ShoppingCartIcon'
+import UserIcon from './UserIcon'
 
 export default function Navbar() {
   return (
@@ -39,9 +41,18 @@ export default function Navbar() {
               Contact Us
             </button>
           </Link>
+          <Link href={'/cart'}>
+            <button
+              type='button'
+              className='inline-flex items-center rounded-md  px-3 py-2 text-md font-medium leading-4 text-slate-400 hover:text-slate-200  hover:bg-slate-200/10 focus:outline-none'
+            >
+              Cart
+            </button>
+          </Link>
         </div>
         <div className='flex-1'></div>
-        <div className=''></div>
+        <div className=''><ShoppingCartIcon /></div>
+        <div className='ml-3'><UserIcon /></div>
       </nav>
     </div>
   )

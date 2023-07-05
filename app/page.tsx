@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import { IProduct } from '@/types'
 import PageTitle from '@/components/PageTitle'
 import ProductCard from './components/ProductCard'
-import MyCart from './components/MyCart'
 
-const PAGETITLE = 'Our Products'
+const PAGETITLE = 'Our Products '
 
 async function getData() {
   const res = await fetch(
@@ -21,7 +20,7 @@ async function getData() {
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: PAGETITLE,
+    title: PAGETITLE + ' | ABRA Test App',
   }
 }
 

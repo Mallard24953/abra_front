@@ -5,10 +5,12 @@ import { IProduct } from '@/types'
 
 interface cartState {
   products: IProduct[]
+  totalPrice: number
 }
 
 const initialState:cartState = {
-  products: [] 
+  products: [],
+  totalPrice: 0 
 }
 
 const cartSlice = createSlice({
@@ -17,7 +19,10 @@ const cartSlice = createSlice({
   reducers: {
     addToCart(state, action:PayloadAction<IProduct>) {
       state.products = [...state.products, action.payload]
-    }
+      let total = 0
+      state.products.forEach((product: IProduct) => (total += +product.price))
+      state.totalPrice = total
+    },
   },
 })
 
