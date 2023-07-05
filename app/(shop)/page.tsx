@@ -3,7 +3,7 @@ import { IProduct } from '@/types'
 import PageTitle from '@/app/components/PageTitle'
 import ProductCard from './components/ProductCard'
 
-const PAGETITLE = 'Our Products '
+const PAGETITLE = 'Our Products'
 
 async function getData() {
   const res = await fetch(
