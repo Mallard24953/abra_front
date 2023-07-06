@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { IProduct } from '@/types'
 import PageTitle from '@/app/components/PageTitle'
 
 
