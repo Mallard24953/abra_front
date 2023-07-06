@@ -7,9 +7,9 @@ interface cartState {
   totalPrice: number
 }
 
-let initialState:cartState = {
+let initialState: cartState = {
   products: [] as IProduct[],
-  totalPrice: 0 
+  totalPrice: 0,
 }
 
 function _calcTotalPrice(products: IProduct[]) {
@@ -18,32 +18,37 @@ function _calcTotalPrice(products: IProduct[]) {
   return total
 }
 
-const setInitialState =  () => {
-  const savedCart = window.localStorage.getItem('cart')
+const setInitialState = () => {
+  let savedCart 
+  if (typeof window !== 'undefined') {
+    savedCart = localStorage.getItem('cart')
+  } 
+
+  
   if (savedCart) {
-    const prods:IProduct[] = JSON.parse(savedCart)
+    const prods: IProduct[] = JSON.parse(savedCart)
     initialState = {
       products: prods,
-      totalPrice: _calcTotalPrice(prods)
+      totalPrice: _calcTotalPrice(prods),
     }
-  } 
+  }
 }
 
 setInitialState()
-
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState: initialState,
   reducers: {
-    addToCart(state, action:PayloadAction<IProduct>) {
+    addToCart(state, action: PayloadAction<IProduct>) {
       state.products = [...state.products, action.payload]
       state.totalPrice = _calcTotalPrice(state.products)
-      window.localStorage.setItem('cart', JSON.stringify(state.products))
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cart', JSON.stringify(state.products))
+      }
     },
   },
 })
-
 
 export const { addToCart } = cartSlice.actions
 export default cartSlice.reducer

@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useState } from 'react'
+import useAuth from '../../../../hooks/useAuth'
 
 interface ILoginData {
   email: string | undefined
@@ -18,8 +19,16 @@ const schema = yup
   })
   .required()
 
+
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setErrors] = useState([])
+  const [status, setStatus] = useState(null)
+
+  const { login } = useAuth({
+    middleware: 'guest',
+    redirectIfAuthenticated: '/dashboard',
+  })
 
   const {
     register,
@@ -42,6 +51,14 @@ export default function LoginForm() {
   const sendOrderForm: SubmitHandler<ILoginData> = (data: ILoginData, e) => {
     console.log(data)
     setIsLoading(true)
+
+    login({
+      email: data.email,
+      password: data.password,
+      remember: data.rememberMe,
+    })
+
+
   }
 
   return (

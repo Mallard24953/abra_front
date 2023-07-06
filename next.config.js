@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  experimental: { appDir: true, serverActions: true },
+  experimental: { appDir: true },
   reactStrictMode: true,
   images: {
     remotePatterns: [

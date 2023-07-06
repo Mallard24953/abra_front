@@ -27,6 +27,7 @@ export default async function Page() {
           width={1000}
           height={1200}
           className='h-full w-full object-cover object-center lg:h-full lg:w-full rounded-md'
+          priority={true}
         />
         </div>
       </main>

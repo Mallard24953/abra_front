@@ -2,13 +2,14 @@ import type { Metadata } from 'next'
 import { IProduct } from '@/types'
 import PageTitle from '@/app/components/PageTitle'
 import ProductCard from './components/ProductCard'
+import axiosAPI from '@/lib/axios'
 
 const PAGETITLE = 'Our Products'
 
 async function getData() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products`,
-    { next: {revalidate: 0} }
+    { cache: 'no-cache' }
   )
 
   if (!res.ok) {
