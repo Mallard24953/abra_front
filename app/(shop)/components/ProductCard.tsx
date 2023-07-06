@@ -1,3 +1,4 @@
+import StoreProvider from '@/store/StoreProvider';
 import { IProduct } from '@/types'
 import Image from 'next/image'
 import AddToCartButton from './AddToCartButton'
@@ -36,8 +37,10 @@ export default function ProductCard({ product }: IProductCardProps) {
             <h3 className='text-sm text-slate-700 dark:text-slate-200'>{product.name}</h3>
           </div>
         </div>
-        <div className='mt-auto'>
+        <div className='mt-auto'>        
+        <StoreProvider>
           <AddToCartButton product={product} />
+        </StoreProvider>
         </div>
       </div>
     </>

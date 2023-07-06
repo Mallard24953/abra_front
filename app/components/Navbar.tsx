@@ -1,3 +1,4 @@
+import StoreProvider from '@/store/StoreProvider'
 import Link from 'next/link'
 import ShoppingCartIcon from './ShoppingCartIcon'
 import UserIcon from './UserIcon'
@@ -51,8 +52,14 @@ export default function Navbar() {
           </Link>
         </div>
         <div className='flex-1'></div>
-        <div className=''><ShoppingCartIcon /></div>
-        <div className='ml-3'><UserIcon /></div>
+        <div className=''>
+          <StoreProvider>
+            <ShoppingCartIcon />
+          </StoreProvider>
+        </div>
+        <div className='ml-3'>
+          <UserIcon />
+        </div>
       </nav>
     </div>
   )

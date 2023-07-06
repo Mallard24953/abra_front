@@ -22,14 +22,10 @@ export default async function RootLayout({
   return (
     <html lang='en'>
       <body className={`${inter.className} bg-slate-100 dark:bg-slate-900`}>
-        <StoreProvider>
-          <>
             <Navbar />
             <div className='mt-[115px] pb-12'>
               {children}
             </div>
-          </>
-        </StoreProvider>
       </body>
     </html>
   )
