@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { IProduct } from '@/types'
 import PageTitle from '@/app/components/PageTitle'
 import ProductCard from './components/ProductCard'
-import axiosAPI from '@/lib/axios'
 
 const PAGETITLE = 'Our Products'
 
@@ -33,7 +32,9 @@ export default async function Page() {
       <PageTitle title={PAGETITLE} />
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10 mx-auto'>
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <>
+            <ProductCard key={product.id} product={product} />
+          </>
         ))}
       </div>
     </main>

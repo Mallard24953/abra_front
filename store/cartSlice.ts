@@ -18,12 +18,8 @@ function _calcTotalPrice(products: IProduct[]) {
   return total
 }
 
-const setInitialState = () => {
-  let savedCart 
-  if (typeof window !== 'undefined') {
-    savedCart = localStorage.getItem('cart')
-  } 
-
+/* const setInitialState = () => {
+  const savedCart = localStorage.getItem('cart')
   
   if (savedCart) {
     const prods: IProduct[] = JSON.parse(savedCart)
@@ -32,9 +28,9 @@ const setInitialState = () => {
       totalPrice: _calcTotalPrice(prods),
     }
   }
-}
+} */
 
-setInitialState()
+// setInitialState()
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -43,9 +39,7 @@ const cartSlice = createSlice({
     addToCart(state, action: PayloadAction<IProduct>) {
       state.products = [...state.products, action.payload]
       state.totalPrice = _calcTotalPrice(state.products)
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('cart', JSON.stringify(state.products))
-      }
+      // localStorage.setItem('cart', JSON.stringify(state.products))
     },
   },
 })
