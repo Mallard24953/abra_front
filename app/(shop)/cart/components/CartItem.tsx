@@ -24,9 +24,9 @@ export default function CartItem({ product, count }: ICartItemProps) {
           className='h-full w-full object-cover object-center lg:h-full lg:w-full rounded-md'
         />
       </div>
-      <div className='flex-1 text-slate-700'>{product.name}</div>
-      <div className='w-20 text-slate-700'>{count}</div>
-      <div className='w-20 text-end'>
+      <div className='flex-1 text-slate-700 dark:text-slate-200'>{product.name}</div>
+      <div className='w-20 text-slate-700 dark:text-slate-200'>{count}</div>
+      <div className='w-20 text-end text-slate-700 dark:text-slate-200'>
         { formatter.format(+product.price) }
       </div>
     </div>

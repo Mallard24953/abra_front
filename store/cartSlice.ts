@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-
 import { IProduct } from '@/types'
 
 interface cartState {
@@ -8,10 +7,30 @@ interface cartState {
   totalPrice: number
 }
 
-const initialState:cartState = {
-  products: [],
+let initialState:cartState = {
+  products: [] as IProduct[],
   totalPrice: 0 
 }
+
+function _calcTotalPrice(products: IProduct[]) {
+  let total = 0
+  products.forEach((product: IProduct) => (total += +product.price))
+  return total
+}
+
+const setInitialState =  () => {
+  const savedCart = window.localStorage.getItem('cart')
+  if (savedCart) {
+    const prods:IProduct[] = JSON.parse(savedCart)
+    initialState = {
+      products: prods,
+      totalPrice: _calcTotalPrice(prods)
+    }
+  } 
+}
+
+setInitialState()
+
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -19,9 +38,8 @@ const cartSlice = createSlice({
   reducers: {
     addToCart(state, action:PayloadAction<IProduct>) {
       state.products = [...state.products, action.payload]
-      let total = 0
-      state.products.forEach((product: IProduct) => (total += +product.price))
-      state.totalPrice = total
+      state.totalPrice = _calcTotalPrice(state.products)
+      window.localStorage.setItem('cart', JSON.stringify(state.products))
     },
   },
 })

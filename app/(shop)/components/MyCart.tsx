@@ -12,7 +12,7 @@ export default function MyCart() {
 
   return (
     <Link href={'/cart'}>
-      <button className='inline-flex items-center rounded-md border border-indigo-600 bg-transparent px-4 py-2 text-sm font-medium  text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
+      <button className='inline-flex items-center rounded-md border border-indigo-600 bg-transparent px-4 py-2 text-sm font-medium  text-slate-700 dark:text-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'>
         {'My Cart'}&nbsp;
         <Counter count={count.length} />
         &nbsp;{'items'}

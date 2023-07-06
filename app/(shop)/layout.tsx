@@ -25,7 +25,9 @@ export default async function RootLayout({
         <StoreProvider>
           <>
             <Navbar />
-            {children}
+            <div className='mt-[115px] pb-12'>
+              {children}
+            </div>
           </>
         </StoreProvider>
       </body>

@@ -25,12 +25,12 @@ export default function Cart() {
 
   return (
     <>
-      <div className='w-full flex flex-col shadow-xl rounded-xl bg-white dark:bg-slate-800 divide-y'>
+      <div className='w-full flex flex-col shadow-xl rounded-xl bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700'>
         <div className='flex flex-row gap-6 p-6 m-6 mb-0'>
           <div className='w-20'> </div>
-          <div className='flex-1 text-sm font-bold text-slate-500'>Product</div>
-          <div className='w-20 text-sm font-bold text-slate-500'>Count</div>
-          <div className='w-20 text-sm font-bold text-end text-slate-500'>
+          <div className='flex-1 text-sm font-bold text-slate-500 dark:text-slate-400'>Product</div>
+          <div className='w-20 text-sm font-bold text-slate-500 dark:text-slate-400'>Count</div>
+          <div className='w-20 text-sm font-bold text-end text-slate-500 dark:text-slate-400'>
             Price
           </div>
         </div>
@@ -41,10 +41,10 @@ export default function Cart() {
         <div className='flex flex-row gap-6 p-6 m-6 border-t border-slate-300'>
           <div className='w-20'></div>
           <div className='flex-1'></div>
-          <div className='w-20 text-lg font-semibold text-end text-slate-500'>
+          <div className='w-20 text-lg font-semibold text-end text-slate-500 dark:text-slate-400'>
             Total:
           </div>
-          <div className='w-20 text-lg font-semibold text-end'>
+          <div className='w-20 text-lg font-semibold text-end text-slate-700 dark:text-slate-300'>
             {formatter.format(+total)}
           </div>
         </div>

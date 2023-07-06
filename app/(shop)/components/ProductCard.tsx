@@ -16,7 +16,7 @@ export default function ProductCard({ product }: IProductCardProps) {
 
   return (
     <>
-      <div className='group relative flex flex-col p-6 shadow-xl rounded-xl bg-white dark:bg-slate-800 border dark:border-slate-400'>
+      <div className='group relative flex flex-col p-6 shadow-xl rounded-xl bg-white dark:bg-slate-800/90 dark:border dark:border-slate-700'>
         <div className='aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:h-80'>
           <Image
             src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${product.image}`}
@@ -29,11 +29,11 @@ export default function ProductCard({ product }: IProductCardProps) {
           />
         </div>
         <div className='my-3'>
-          <div className='text-xl font-medium text-red-700 mb-2'>
+          <div className='text-xl font-medium text-red-800 dark:text-red-400 mb-2'>
             Price:{' '} {formatter.format(+product.price)}
           </div>
           <div>
-            <h3 className='text-sm  text-slate-700'>{product.name}</h3>
+            <h3 className='text-sm text-slate-700 dark:text-slate-200'>{product.name}</h3>
           </div>
         </div>
         <div className='mt-auto'>

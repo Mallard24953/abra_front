@@ -2,6 +2,8 @@
 import { IProduct } from '@/types'
 import { store } from '@/store'
 import { addToCart } from '@/store/cartSlice'
+import { useAppDispatch, useAppSelector } from '@/store/hooks'
+
 
 
 interface IAddToCartButtonProps {
@@ -9,9 +11,11 @@ interface IAddToCartButtonProps {
 }
 
 export default function AddToCartButton({ product }: IAddToCartButtonProps) {
+  const dispatch = useAppDispatch()
 
   const addProduct = () => {
-    store.dispatch(addToCart(product))
+    dispatch(addToCart(product))
+    // store.dispatch(addToCart(product))
   }
 
   return (
