@@ -1,16 +1,34 @@
 'use client'
+import { useAppSelector } from '@/store/hooks'
+import { useEffect, useState } from 'react'
+import LoginModal from './LoginModal'
+import useAuth from '@/hooks/useAuth'
+import { IUser } from '@/types'
+
 export default function UserIcon() {
+  const userFromState = useAppSelector((state) => state.user)
+  const { user } = useAuth()
+  const [currentUser, setCurrentUser] = useState<IUser>()
+
+  useEffect(() => {
+    setCurrentUser(userFromState.user)
+  }, [userFromState])
+
+  const Button = (user: any) => {
+    console.log(user.user.email)
+    return (
+      <>
+        <button className='flex w-full justify-center rounded-md border border-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+          {user.user.email}
+        </button>
+      </>
+    )
+  }
+
   return (
     <>
-      <button className='inline-block h-10 w-10 overflow-hidden rounded-full bg-slate-100'>
-        <svg
-          className='h-full w-full text-slate-300'
-          fill='currentColor'
-          viewBox='0 0 24 24'
-        >
-          <path d='M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z' />
-        </svg>
-      </button>
+      {currentUser && <Button user={currentUser} />}
+      {!currentUser && <LoginModal />}
     </>
   )
 }

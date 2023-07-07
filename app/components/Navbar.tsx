@@ -34,14 +34,6 @@ export default function Navbar() {
               About Us
             </button>
           </Link>
-          <Link href={'/login'}>
-            <button
-              type='button'
-              className='inline-flex items-center rounded-md  px-3 py-2 text-md font-medium leading-4 text-slate-400 hover:text-slate-200  hover:bg-slate-200/10 focus:outline-none'
-            >
-              Login
-            </button>
-          </Link>
           <Link href={'/cart'}>
             <button
               type='button'
@@ -58,7 +50,9 @@ export default function Navbar() {
           </StoreProvider>
         </div>
         <div className='ml-3'>
-          <UserIcon />
+          <StoreProvider>
+            <UserIcon />
+          </StoreProvider>
         </div>
       </nav>
     </div>

@@ -19,7 +19,7 @@ const schema = yup
   .required()
 
 
-export default function LoginForm() {
+export default function LoginForm({ onSubmit }: { onSubmit: () => void }) {
 
   const { loginUser } = useAuth({
     middleware: 'guest',
@@ -50,11 +50,11 @@ export default function LoginForm() {
       password: data.password
     })
     setIsLoading(false)
+    onSubmit()
   }
 
   return (
     <>
-      <div className='bg-white dark:bg-slate-800 mt-6 grid-rows-2 border bordered border-slate-200 dark:border-slate-600 rounded-xl p-6 drop-shadow-md'>
         <form onSubmit={handleSubmit(sendOrderForm)}>
           <div className='grid grid-cols-1 gap-3'>
             <div className='form-control'>
@@ -110,7 +110,6 @@ export default function LoginForm() {
             </button>
           </div>
         </form>
-      </div>
     </>
   )
 }
