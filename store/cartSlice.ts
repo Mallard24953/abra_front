@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { IProduct } from '@/types'
+import { setCookie } from 'cookies-next';
+
 
 interface cartState {
   products: IProduct[]
@@ -18,20 +20,6 @@ function _calcTotalPrice(products: IProduct[]) {
   return total
 }
 
-/* const setInitialState = () => {
-  const savedCart = localStorage.getItem('cart')
-  
-  if (savedCart) {
-    const prods: IProduct[] = JSON.parse(savedCart)
-    initialState = {
-      products: prods,
-      totalPrice: _calcTotalPrice(prods),
-    }
-  }
-} */
-
-// setInitialState()
-
 const cartSlice = createSlice({
   name: 'cart',
   initialState: initialState,
@@ -39,10 +27,14 @@ const cartSlice = createSlice({
     addToCart(state, action: PayloadAction<IProduct>) {
       state.products = [...state.products, action.payload]
       state.totalPrice = _calcTotalPrice(state.products)
-      // localStorage.setItem('cart', JSON.stringify(state.products))
+      setCookie('cart', state.products, { });
+    },
+    restoreSavedCart(state, action: PayloadAction<IProduct[]>) {
+      state.products = [...action.payload]
+      state.totalPrice = _calcTotalPrice(state.products)
     },
   },
 })
 
-export const { addToCart } = cartSlice.actions
+export const { addToCart, restoreSavedCart } = cartSlice.actions
 export default cartSlice.reducer

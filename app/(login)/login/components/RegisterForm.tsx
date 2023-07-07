@@ -9,7 +9,6 @@ import useAuth from '@/hooks/useAuth'
 interface ILoginData {
   email: string | undefined
   password: string | undefined
-  rememberMe: boolean | undefined
 }
 
 const schema = yup
@@ -40,19 +39,18 @@ export default function RegisterForm() {
     defaultValues: {
       email: '',
       password: '',
-      rememberMe: true,
     },
   })
 
-  const sendOrderForm: SubmitHandler<ILoginData> = (data: ILoginData, e) => {
+  const sendOrderForm: SubmitHandler<ILoginData> = async (data: ILoginData, e) => {
     setIsLoading(true)
-    registerUser({
+    await registerUser({
       name: data.email,
       email: data.email,
       password: data.password,
       password_confirmation: data.password
     })
-
+    setIsLoading(false)
   }
 
   return (
@@ -101,19 +99,6 @@ export default function RegisterForm() {
                     {errors.password.message}
                   </span>
                 )}
-              </label>
-            </div>
-          </div>
-
-          <div className='mt-3'>
-            <div className='form-control'>
-              <label className='label p-0 cursor-pointer flex justify-start gap-3 text-slate-600 dark:text-slate-300'>
-                <input
-                  {...register('rememberMe')}
-                  type='checkbox'
-                  className='default:ring-2'
-                />
-                Remember Me
               </label>
             </div>
           </div>

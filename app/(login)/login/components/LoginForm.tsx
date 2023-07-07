@@ -3,23 +3,29 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useState } from 'react'
+import useAuth from '@/hooks/useAuth'
+
 
 interface ILoginData {
   email: string | undefined
   password: string | undefined
-  rememberMe: boolean | undefined
 }
 
 const schema = yup
   .object({
     email: yup.string().email('Wrong Email').required('Requred field'),
     password: yup.string().required('Requred field'),
-    rememberMe: yup.boolean(),
   })
   .required()
 
 
 export default function LoginForm() {
+
+  const { loginUser } = useAuth({
+    middleware: 'guest',
+    redirectIfAuthenticated: '/',
+  })
+
   const [isLoading, setIsLoading] = useState(false)
 
   const {
@@ -33,13 +39,17 @@ export default function LoginForm() {
     defaultValues: {
       email: '',
       password: '',
-      rememberMe: true,
     },
   })
 
-  const sendOrderForm: SubmitHandler<ILoginData> = (data: ILoginData, e) => {
-    console.log(data)
+  const sendOrderForm: SubmitHandler<ILoginData> = async (data: ILoginData, e) => {
     setIsLoading(true)
+    await loginUser({
+      name: data.email,
+      email: data.email,
+      password: data.password
+    })
+    setIsLoading(false)
   }
 
   return (
@@ -87,19 +97,6 @@ export default function LoginForm() {
                     {errors.password.message}
                   </span>
                 )}
-              </label>
-            </div>
-          </div>
-
-          <div className='mt-3'>
-            <div className='form-control'>
-              <label className='label p-0 cursor-pointer flex justify-start gap-3 text-slate-600 dark:text-slate-300'>
-                <input
-                  {...register('rememberMe')}
-                  type='checkbox'
-                  className='default:ring-2'
-                />
-                Remember Me
               </label>
             </div>
           </div>

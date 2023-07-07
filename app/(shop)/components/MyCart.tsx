@@ -2,6 +2,13 @@
 
 import { useAppSelector } from '@/store/hooks'
 import Link from 'next/link'
+import { getCookie } from 'cookies-next';
+import { useEffect, useMemo } from 'react';
+import { useAppDispatch } from '@/store/hooks'
+import { restoreSavedCart } from '@/store/cartSlice'
+import { IProduct } from '@/types';
+
+
 
 const Counter = ({ count }: { count: number }) => {
   return <span className='text-bold'>{count}</span>
@@ -9,6 +16,14 @@ const Counter = ({ count }: { count: number }) => {
 
 export default function MyCart() {
   const count = useAppSelector((state) => state.cart.products)
+  const dispatch = useAppDispatch()
+  const savedCart = getCookie('cart')
+  
+  useEffect(() => {
+    if (savedCart) {
+      dispatch(restoreSavedCart(JSON.parse(savedCart as string)))
+    }
+  },[])
 
   return (
     <Link href={'/cart'}>
